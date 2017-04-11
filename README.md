@@ -1,9 +1,9 @@
 for-stream
 ==============
 
-A marko 4.0 component that renders async content coming from readable stream which can be string or object.
+A marko 4.0 component that renders async content coming from a readable stream which can be a string or object.
 
-### Install
+### Installation
 
 ```
 npm install for-stream
@@ -23,7 +23,7 @@ template.render({
 }, response)
 ```
 
-In case you need to handle stream data as a group of chunks, for example to render rows in the table, you ca use batchSize attribute
+In case you need to handle stream data as a group of chunks, for example to render rows in the table, you can use the `batchSize` attribute:
 
 ```marko
 <for-stream(row from data.myDataStream) batchSize="3">
