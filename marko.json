@@ -1,0 +1,20 @@
+{
+    "<for-stream>": {
+        "renderer": "./for-stream-tag",
+        "@_var": "identifier",
+        "@_dataProvider": "expression",
+        "transformer": "./for-stream-tag-transformer",
+        "@timeout": "integer",
+        "@timeout-message": "string",
+        "@error-message": "string",
+        "vars": [{
+            "name-from-attribute": "_var"
+        }],
+        "autocomplete": [
+            {
+                "snippet": "for-stream(${1:varName} from ${2:data.myDataStream})",
+                "descriptionMoreURL": "http://github.corp.ebay.com/nodejs/sample-app-template-ebay"
+            }
+        ]
+    }
+}
