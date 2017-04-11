@@ -15,28 +15,22 @@ describe(__filename, () => {
 
     it('should render stream data', function (next) {
         this.timeout(1000);
-        const template = require('marko').load(require.resolve('./for.marko'));
+        const template = require('marko').load(require.resolve('./fixtures/page/index.marko'));
 
         const flow = new oja.Flow();
         flow.define('topic', 'A');
         flow.define('topic', 'B');
         flow.define('topic', 'C');
+        flow.define('topic', 'D');
+        flow.define('topic', null);
+
         template.renderToString({
             myDataStream: flow.consumeStream('topic')
         }, (err, html) => {
             Assert.ok(!err, err && err.stack);
-            Assert.equal('<div>A</div><div>B</div><div>C</div><div>D</div>', html);
+            Assert.equal('<tr><td>A</td><td>B</td><td>C</td></tr><tr><td>D</td></tr>', html);
             next();
         });
-
-        setImmediate(() => {
-            flow.define('topic', 'D');
-            setImmediate(() => {
-                // mark end of stream
-                flow.define('topic', null);
-            });
-        });
-
     });
 
     describe('batch size', () => {
