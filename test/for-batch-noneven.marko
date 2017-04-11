@@ -1,0 +1,7 @@
+<for-stream(row from data.myDataStream) timeout="500" batchSize="3">
+    <tr>
+        <for(varName in row)>
+            <td>${varName}</td>
+        </for>
+    </tr>
+</for-stream>

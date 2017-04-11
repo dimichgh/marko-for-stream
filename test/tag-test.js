@@ -2,10 +2,9 @@
 
 const Assert = require('assert');
 const Fs = require('fs');
-const template = require('marko').load(require.resolve('./for.marko'));
 const oja = require('oja');
 
-describe.only(__filename, () => {
+describe(__filename, () => {
 
     after(() => {
         try {
@@ -16,6 +15,7 @@ describe.only(__filename, () => {
 
     it('should render stream data', function (next) {
         this.timeout(1000);
+        const template = require('marko').load(require.resolve('./for.marko'));
 
         const flow = new oja.Flow();
         flow.define('topic', 'A');
@@ -39,8 +39,61 @@ describe.only(__filename, () => {
 
     });
 
+    describe('batch size', () => {
+        it('should render stream data with batch size non-evenly divisible', function (next) {
+            this.timeout(1000);
+            const template = require('marko').load(require.resolve('./for-batch-noneven.marko'));
+
+            const flow = new oja.Flow();
+            flow.define('topic', 'A');
+            flow.define('topic', 'B');
+            flow.define('topic', 'C');
+            template.renderToString({
+                myDataStream: flow.consumeStream('topic')
+            }, (err, html) => {
+                Assert.ok(!err, err && err.stack);
+                Assert.equal('<tr><td>A</td><td>B</td><td>C</td></tr><tr><td>D</td></tr>', html);
+                next();
+            });
+
+            setImmediate(() => {
+                flow.define('topic', 'D');
+                setImmediate(() => {
+                    // mark end of stream
+                    flow.define('topic', null);
+                });
+            });
+        });
+
+        it('should render stream data with batch size evenly divisible', function (next) {
+            this.timeout(1000);
+            const template = require('marko').load(require.resolve('./for-batch-even.marko'));
+
+            const flow = new oja.Flow();
+            flow.define('topic', 'A');
+            flow.define('topic', 'B');
+            flow.define('topic', 'C');
+            template.renderToString({
+                myDataStream: flow.consumeStream('topic')
+            }, (err, html) => {
+                Assert.ok(!err, err && err.stack);
+                Assert.equal('<tr><td>A</td><td>B</td></tr><tr><td>C</td><td>D</td></tr>', html);
+                next();
+            });
+
+            setImmediate(() => {
+                flow.define('topic', 'D');
+                setImmediate(() => {
+                    // mark end of stream
+                    flow.define('topic', null);
+                });
+            });
+        });
+    });
+
     it('should handle timeout', function (next) {
         this.timeout(1000);
+        const template = require('marko').load(require.resolve('./for.marko'));
 
         const flow = new oja.Flow();
         flow.define('topic', 'A');
@@ -60,6 +113,7 @@ describe.only(__filename, () => {
 
     it('should handle stream error', function (next) {
         this.timeout(1000);
+        const template = require('marko').load(require.resolve('./for.marko'));
 
         const flow = new oja.Flow();
         flow.define('topic', 'A');

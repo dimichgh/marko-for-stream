@@ -5,6 +5,7 @@
         "@_dataProvider": "expression",
         "transformer": "./for-stream-tag-transformer",
         "@timeout": "integer",
+        "@batchSize": "integer",
         "@timeout-message": "string",
         "@error-message": "string",
         "vars": [{
