@@ -16,11 +16,6 @@ module.exports = function transform(el, context) {
     var varName = match[1];
     var dataProviderAttr = match[2];
 
-    if (!context.util.isValidJavaScriptIdentifier(varName)) {
-        context.addError('Invalid <for-stream> tag. Argument\'s variable name should be a valid JavaScript identifier. Example: user, as in <for-stream(data from data.userStream)>');
-        return;
-    }
-
     var builder = context.builder;
 
     el.setAttributeValue('_var', builder.literal(varName));

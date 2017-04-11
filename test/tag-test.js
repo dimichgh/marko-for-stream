@@ -135,4 +135,34 @@ describe(__filename, () => {
             stream.emit('error', new Error('Boom'));
         });
     });
+
+    it('should handle invalid tag', function (next) {
+        try {
+            require('marko').load(require.resolve('./for-invalid.marko'));
+        }
+        catch (err) {
+            Assert.ok(err.message.indexOf('Invalid <for-stream> tag. Argument is missing') !== -1);
+            next();
+        }
+    });
+
+    it('should handle malformed tag', function (next) {
+        try {
+            require('marko').load(require.resolve('./for-malformed.marko'));
+        }
+        catch (err) {
+            Assert.ok(err.message.indexOf('Invalid <for-stream> tag. Argument is malformed. Example: <for-stream(data from data.userStream)>') !== -1);
+            next();
+        }
+    });
+
+    it('should handle invalid identifier in the tag', function (next) {
+        try {
+            require('marko').load(require.resolve('./for-invalid-identifier.marko'));
+        }
+        catch (err) {
+            Assert.ok(err.message.indexOf('Invalid <for-stream> tag. Argument is malformed. Example: <for-stream(data from data.userStream)>') !== -1);
+            next();
+        }
+    });
 });

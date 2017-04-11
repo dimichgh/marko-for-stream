@@ -4,7 +4,8 @@
   "description": "Marko for-stream component to handle stream data providers",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "mocha": "^3.2.0"
   },
   "devDependencies": {
+    "istanbul": "^0.4.5",
     "oja": "^0.2.0"
   }
 }
