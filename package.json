@@ -1,6 +1,6 @@
 {
   "name": "marko-for-stream",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Marko for-stream component to handle stream data providers",
   "main": "index.js",
   "scripts": {
