@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dimichgh/for-stream.git"
+    "url": "git+https://github.com/dimichgh/marko-for-stream.git"
   },
   "keywords": [
     "marko",
@@ -19,9 +19,9 @@
   "author": "Dmytro Semenov <dimichsdg@yahoo.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dimichgh/for-stream/issues"
+    "url": "https://github.com/dimichgh/marko-for-stream/issues"
   },
-  "homepage": "https://github.com/dimichgh/for-stream#readme",
+  "homepage": "https://github.com/dimichgh/marko-for-stream#readme",
   "dependencies": {
     "marko": "^4.2.7",
     "mocha": "^3.2.0"
