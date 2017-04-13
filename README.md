@@ -1,7 +1,7 @@
 for-stream
 ==============
 
-A marko 4.0 component that renders async content coming from a readable stream which can be a string or object.
+A marko 4.0 component that renders async content coming from a readable stream which can be a string or an object.
 
 ### Installation
 
