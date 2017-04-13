@@ -6,7 +6,7 @@ A marko 4.0 component that renders async content coming from a readable stream w
 ### Installation
 
 ```
-npm install for-stream
+npm install marko-for-stream
 ```
 
 ### Usage
