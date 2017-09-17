@@ -1,6 +1,8 @@
 marko-for-stream
 ==============
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dimichgh/marko-for-stream.svg)](https://greenkeeper.io/)
+
 A marko 4.0 component that renders async content coming from a readable stream which can be a string or an object.
 
 ### Installation
